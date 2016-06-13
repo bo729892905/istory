@@ -1,5 +1,6 @@
 package cn.bluemobi.controller.app;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +48,10 @@ public class AppShareController extends AppController {
 	private StarStoryService starStoryService;
 	/**
 	 * app分享
-	 * 
+	 *
 	 */
 	@RequestMapping("app/webShare")
 	public String webShare(String id,String chapterId,String type ) {
-		
 		if("1".equals(type)){//故事
 			StoryIsland s = storyIslandService.getStoryIsland(id,"","");
 			//故事章节列表 1是文字 2是图片 3是音频 4是视频
@@ -65,13 +65,13 @@ public class AppShareController extends AppController {
 			if(!TextHelper.isNullOrEmpty(chapterId)){
 				chapterId = "";
 			}
-			
+
 			List<Comment> commentlist =  getCommentList(id,chapterId,type,"","0");
 			request.setAttribute("commentList", commentlist);
-			
+
 			request.setAttribute("storyIsland", s);
 			request.setAttribute("list", list);
-			
+
 		}else if("2".equals(type)){//微电影
 			MicroFilm m = microFilmService.getMicroFilmById(id);
 			if(!TextHelper.isNullOrEmpty(m.getRelateStoryId())){
@@ -84,6 +84,24 @@ public class AppShareController extends AppController {
 				request.setAttribute("commentList", list1);
 			}
 			List<Comment> commentlist =  getCommentList(id,chapterId,type,"","0");
+
+			Page page = new Page();
+			try {
+				page.setPageNo(Integer.parseInt(getParameter("pageNo") == null ? "1": getParameter("pageNo")));
+				page.setPageSize(Integer.parseInt(getParameter("pageSize") == null ? "6": getParameter("pageSize")));
+				page.setPageCount(-1);
+
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			List<StoryIsland> choicenessList = storyIslandService.getStoryIslandList("","1","",type,page);
+			request.setAttribute("choicenessList", choicenessList);
+
+
 			request.setAttribute("commentList1", commentlist);
 			request.setAttribute("microFilm", m);
 		}else if("3".equals(type)){//剧本
@@ -107,8 +125,8 @@ public class AppShareController extends AppController {
 		request.setAttribute("type", type);
 		return "/admin/web_app.jsp";
 	}
-	
-	
+
+
 	/**
 	 * 查找评论
 	 * @param beCommentId
@@ -120,25 +138,25 @@ public class AppShareController extends AppController {
 	 */
 	public List<Comment> getCommentList(String beCommentId,String secondId,String type,String memberId,String order) {
 		try {
-				Page page = new Page();
-				page.setPageNo(Integer.parseInt(getParameter("pageNo") == null ? "1": getParameter("pageNo")));
-				page.setPageSize(Integer.parseInt(getParameter("pageSize") == null ? "10": getParameter("pageSize")));
-				page.setPageCount(-1);
-				List<Comment> list = commentService.getCommentList(beCommentId,secondId,type,memberId,page,order);
-				list = list==null ? new ArrayList<Comment>():list;
-				List<FilterWords> filterWordsList = filterWordsService.getFilterList();
-				filterWordsList = filterWordsList==null ? new ArrayList<FilterWords>():filterWordsList;
-				for (int i = 0; i < list.size(); i++) {
-					for (int j = 0; j < filterWordsList.size(); j++) {
-						String filterWords = filterWordsList.get(j).getFilterWords();
-						String replaceWords =""; 
-						for (int k = 0; k < filterWords.length(); k++) {
-							replaceWords += "*";
-						}
-						list.get(i).setComment(list.get(i).getComment().replace(filterWords, replaceWords));
+			Page page = new Page();
+			page.setPageNo(Integer.parseInt(getParameter("pageNo") == null ? "1": getParameter("pageNo")));
+			page.setPageSize(Integer.parseInt(getParameter("pageSize") == null ? "10": getParameter("pageSize")));
+			page.setPageCount(-1);
+			List<Comment> list = commentService.getCommentList(beCommentId,secondId,type,memberId,page,order);
+			list = list==null ? new ArrayList<Comment>():list;
+			List<FilterWords> filterWordsList = filterWordsService.getFilterList();
+			filterWordsList = filterWordsList==null ? new ArrayList<FilterWords>():filterWordsList;
+			for (int i = 0; i < list.size(); i++) {
+				for (int j = 0; j < filterWordsList.size(); j++) {
+					String filterWords = filterWordsList.get(j).getFilterWords();
+					String replaceWords ="";
+					for (int k = 0; k < filterWords.length(); k++) {
+						replaceWords += "*";
 					}
+					list.get(i).setComment(list.get(i).getComment().replace(filterWords, replaceWords));
 				}
-				return list;
+			}
+			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -151,14 +169,14 @@ public class AppShareController extends AppController {
 	public String protocol() {
 		return "/admin/protocol.jsp";
 	}
-	
+
 	/**
 	 * 进入下载页面
-	 * 
+	 *
 	 */
 	@RequestMapping(value = "app/webDownload", method = RequestMethod.GET)
 	public String webShare(){
 		return "admin/web_app_download.jsp";
 	}
-	
+
 }
