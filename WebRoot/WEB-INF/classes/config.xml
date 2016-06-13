@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bluemobi>
+	<!-- 开发模式 -->
+  	<setting name="domain" value="http://10.58.174.232:8080/istory/"/>  
+  	<setting name="upload" value="http://10.58.174.232:8080/"/>  
+    <!--   <setting name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/istory" />
+	<setting name="jdbcUsername" value="root" />
+	<setting name="jdbcPassword" value="123456" />   -->
+	
+    <!-- <setting name="domain" value="http://121.40.132.219:8087/istory/" /> 
+	<setting name="upload" value="http://121.40.132.219:8087/"/>   --> 
+	<setting name="jdbcUrl" value="jdbc:mysql://121.40.132.219:3306/istory?useUnicode=true&amp;characterEncoding=UTF-8" /> 
+	<setting name="jdbcUsername" value="root" />
+	<setting name="jdbcPassword" value="e37afc8c46" />   
+	<setting name="siteName" value="istory" />  
+	
+	<!--   <setting name="domain" value="http://101.200.124.251/istory/" /> 
+	<setting name="upload" value="http://101.200.124.251/"/>   
+	<setting name="jdbcUrl" value="jdbc:mysql://101.200.124.251:3306/istory?useUnicode=true&amp;characterEncoding=UTF-8" /> 
+	<setting name="jdbcUsername" value="root" />
+	<setting name="jdbcPassword" value="123.com" />   
+	<setting name="siteName" value="istory" />   -->
+</bluemobi>

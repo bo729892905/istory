@@ -1,0 +1,74 @@
+﻿@charset "utf-8";
+/*--------------- reset -------------------*/
+html, body { position: relative; height: 100%; }
+body { font-family: Arial,"microsoft yahei",Verdana; padding:0;	margin:0; font-size:12px; color:#000; /* background: #f5f0eb;	 */min-width:320px; }
+body,div,fieldset,form,h1,h2,h3,h4,h5,h6,html,p,span {	-webkit-text-size-adjust: none}
+h1,h2,h3,h4,h5,h6 { font-weight:normal; }
+applet,dd,div,dl,dt,h1,h2,h3,h4,h5,h6,html,iframe,img,object,p,span {
+	padding: 0;
+	margin: 0;
+	border: none
+}
+img {padding: 0;	margin: 0;vertical-align: top;	border: none}
+li,ul {list-style: none outside none;	padding: 0;	margin: 0}
+input[type=text],select {-webkit-appearance:none; -moz-appearance: none; margin:0; padding:0; background:none; border:none; font-size:14px; text-indent:3px; font-family: Arial,"microsoft yahei",Verdana;}
+input[type=checkbox] { margin:0}
+
+/*----------- common ---------------*/
+.clear {	clear: both; height: 0;	width: 100%}
+.clearfix:after { visibility: hidden; display: block;font-size: 0;content: " ";	clear: both;height: 0}
+.fl {float: left}
+.fr {float: right}
+a {text-decoration:none; color: gray}
+.rel { position:relative;}
+.abs { position:absolute;}
+.tl { text-align:left; }
+.tc { text-align:center; }
+.tr { text-align:right; }
+.vt { vertical-align:top; }
+.vm { vertical-align:middle; }
+.block { display:block;}
+.none { display:none;}
+.f12 { font-size:12px;}
+.f14 { font-size:14px;}
+.f16 { font-size:16px;}
+.f18 { font-size:18px;}
+.ml10 { margin-left:10px; }
+.mr10 { margin-right:10px; }
+.mt10 { margin-top:10px; }
+.blue { color:#3db39e;}
+.text { text-align:right; width:100%; -webkit-box-flex:1.0; -ms-box-flex:1.0; box-flex:1.0; height:24px; line-height:24px; color:#838186;}
+.text::-webkit-input-placeholder { }
+h2 { color:#fff; font-size:18px;}
+h3 {font-size:16px; height:36px; line-height:36px; color:#333;}
+p { color:#838186; line-height:1.6em;}
+.wrapper {position: relative; min-width: 320px; max-width: 640px; margin: 0px auto; font-size:14px; }
+.content { padding:10px;}
+.iicon { display:inline-block; vertical-align:middle;}
+
+/* banner */
+.swiper-container {
+	width: 100%;
+	height: 100%;
+
+}
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
